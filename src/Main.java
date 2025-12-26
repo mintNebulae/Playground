@@ -1,18 +1,34 @@
-import java.util.Scanner;
+import MontyHall.Simulator;
+
+import java.util.*;
 
 public class Main {
+    static Scanner scanner = new Scanner(System.in);
+
     public static void main(String[] args) {
-        prompter();
+        FileCounter.run();
+        run();
     }
-    public static void prompter() {
-        System.out.println("Type the corresponding input for the tool.");
-        System.out.println("""
+
+    public static void run() {
+        outerLoop:
+        while (true) {
+            System.out.println("""
+                Type the corresponding input for the tool.
                 1: Frequency of words in a block of text.
+                2. Monty Hall simulation.
                 """);
-        Scanner scanner = new Scanner(System.in);
-        switch (scanner.nextInt()) {
-            case 1: Frequency.run();
+            int input = scanner.nextInt();
+            switch (input) {
+                case 1:
+                    Frequency.run();
+                    break outerLoop;
+                case 2:
+                    Simulator.run();
+                    break outerLoop;
+                default:
+                    System.out.println("Invalid input, try again.");
+            }
         }
-            scanner.close();
     }
 }
