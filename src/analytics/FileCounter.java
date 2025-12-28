@@ -1,3 +1,5 @@
+package analytics;
+
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.file.*;

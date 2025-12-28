@@ -1,3 +1,5 @@
+package features.wordfrequency;
+
 import java.util.*;
 
 public class Frequency {
@@ -30,7 +32,7 @@ public class Frequency {
     }
 
     public static void prompter() {
-        System.out.println("Enter document ending with [].");
+        System.out.println("Enter document, typing \"[]\" at the end to signify the end your input");
         Scanner scanner = new Scanner(System.in);
         while (true) {
             String input = scanner.next();

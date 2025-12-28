@@ -1,4 +1,4 @@
-package MontyHall;
+package features.montyhall;
 
 import java.util.*;
 
@@ -15,20 +15,23 @@ public class Hall {
         return doors.get(door);
     }
 
-    public int getRandomGoatGivenGoat(int givenGoat) {
-        Random random = new Random();
-        int index;
-        do {
-            index = random.nextInt(doors.size());
-        } while (this.hasCar(index) && index != givenGoat);
-        return index;
-    }
+   public void removeGoats(int choice, int n) {
+        int index = doors.size() - 1;
+        int removed = 0;
+        while (removed != n) {
+            if (index == choice) {
+                index--;
+                continue;
+            }
+            if (!this.hasCar(index)) {
+                doors.remove(index);
+                removed++;
+            }
+            index--;
+        }
+   }
 
     public int size() {
         return doors.size();
-    }
-
-    public void shuffle() {
-        Collections.shuffle(doors);
     }
 }

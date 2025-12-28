@@ -1,4 +1,6 @@
-import MontyHall.Simulator;
+import features.wordfrequency.Frequency;
+import features.montyhall.Simulator;
+import analytics.FileCounter;
 
 import java.util.*;
 
