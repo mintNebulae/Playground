@@ -2,12 +2,22 @@ package features.montyhall;
 import java.util.*;
 
 public record Config(boolean automation, int strategy, int runs, int cars, int goats, int revealed) {
-    //if you have time make helper methods that get each parameter itself
     public static Config create() {
         Scanner scanner = new Scanner(System.in);
 
         int cars;
         int goats;
+
+
+        boolean automation;
+
+        while (true) {
+            System.out.println("Do you want to gather stats by automating the simulation? (y/n)");
+            String input = scanner.next();
+            if (input.equalsIgnoreCase("y")) { automation = true; break; }
+            if (input.equalsIgnoreCase("n")) { automation = false; break; }
+            System.out.println("Invalid config, try again!");
+        }
 
         while (true) {
             System.out.println("How many cars and goats do you want? Type the numbers respectively.");
@@ -30,16 +40,6 @@ public record Config(boolean automation, int strategy, int runs, int cars, int g
             System.out.println("Invalid config, try again!");
         }
 
-        boolean automation;
-
-        while (true) {
-            System.out.println("Do you want to gather stats by automating the simulation? (y/n)");
-            String input = scanner.next();
-            if (input.equalsIgnoreCase("y")) { automation = true; break; }
-            if (input.equalsIgnoreCase("n")) { automation = false; break; }
-            System.out.println("Invalid config, try again!");
-        }
-
         int strategy;
 
         while (true) {
@@ -48,6 +48,8 @@ public record Config(boolean automation, int strategy, int runs, int cars, int g
             if (strategy == 0 || strategy == 1) break;
             System.out.println("Invalid config, try again!");
         }
+
+        if (!automation) return new Config(false, strategy, 0, cars, goats, revealed);
 
         int runs;
 
