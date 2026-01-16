@@ -1,7 +1,6 @@
 package features.montyhall;
 
 import java.util.*;
-
 import input.Input;
 
 public class Simulator {
