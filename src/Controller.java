@@ -1,9 +1,6 @@
-import features.*;
-import features.montyhall.Simulator;
+import features.montyhall.Simulators.Simulator;
 import features.wordfrequency.Frequency;
 import input.Input;
-
-import java.util.ArrayDeque;
 
 public class Controller {
 

@@ -1,34 +1,31 @@
-package features.montyhall;
+package features.montyhall.Simulators;
 
 import java.util.*;
-import input.Input;
 
-public class Simulator {
-    static Scanner scanner = Input.SCANNER;
-    static Config config;
-    static int wins;
+import features.montyhall.Settings.AutomationSettings;
+import features.montyhall.Settings.GameSettings;
+import features.montyhall.*;
+import input.*;
 
-    public static void run() {
-        setup();
-        if (config.automation()) {
-            automate();
-            printResults();
-        } else {
-            control();
+public abstract class Simulator {
+    Scanner scanner = Input.SCANNER;
+    GameSettings gameSettings;
+    int wins = 0;
+
+    public Simulator(GameSettings gameSettings) {
+        this.gameSettings = gameSettings;
+    }
+
+    public abstract void run();
+
+    public Simulator create() {
+        if (FromStdin.getBool("Do you want to gather stats by automating the simulation? (y/n)", "Invalid input, try again.")) {
+            return new AutomatedSimulator(GameSettings.create(), AutomationSettings.create());
         }
+        return new ManualSimulator(GameSettings.create());
     }
 
-    public static void printResults() {
-        System.out.println("Wins: " + wins);
-        System.out.println("Losses: " + (config.runs() - wins));
-        System.out.println("Winrate: " + (double) wins / config.runs() * 100 + "%");
-    }
-
-    public static void setup() {
-        config = Config.create();
-    }
-
-    public static void control() {
+    public void control() {
         Hall hall = new Hall(config);
         System.out.println("Door 1-" + hall.size() + ": Which door would you like to start with?");
         int firstDoor;
@@ -71,7 +68,7 @@ public class Simulator {
         }
     }
 
-    public static void automate() {
+    public void automate() {
         for (int i = 0; i < config.runs(); i++) {
             Hall hall = new Hall(config);
 
