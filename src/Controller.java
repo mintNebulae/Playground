@@ -2,8 +2,10 @@ import features.montyhall.Simulators.Simulator;
 import features.wordfrequency.Frequency;
 import input.Input;
 
-public class Controller {
+import java.util.Scanner;
 
+public class Controller {
+    Scanner scanner = Input.SCANNER;
     public void start() {
         outerLoop:
         while (true) {
@@ -12,13 +14,16 @@ public class Controller {
                 1: Frequency of words in a block of text.
                 2. Monty Hall simulation.
                 """);
-            int input = Input.SCANNER.nextInt();
+            int input = scanner.nextInt();
+            scanner.nextLine();
+
             switch (input) {
                 case 1:
                     Frequency.run();
                     break outerLoop;
                 case 2:
-                    Simulator.run();
+                    Simulator simulator = Simulator.create();
+                    simulator.run();
                     break outerLoop;
                 default:
                     System.out.println("Invalid input, try again.");

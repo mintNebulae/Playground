@@ -1,14 +1,16 @@
 package features.montyhall;
 
+import features.montyhall.Settings.HallSettings;
+
 import java.util.*;
 
 public class Hall {
     private final List<Status> doors = new ArrayList<>();
     private final List<Integer> goatsIndices = new ArrayList<>();
 
-    public Hall(Config config) {
-        for (int i = 0; i < config.cars(); i++) doors.add(Status.CAR);
-        for (int i = 0; i < config.goats(); i++) doors.add(Status.GOAT);
+    public Hall(HallSettings hallSettings) {
+        for (int i = 0; i < hallSettings.cars(); i++) doors.add(Status.CAR);
+        for (int i = 0; i < hallSettings.goats(); i++) doors.add(Status.GOAT);
         Collections.shuffle(doors);
         for (int i = 0; i < doors.size(); i++) if (doors.get(i) == Status.GOAT) goatsIndices.add(i);
     }
