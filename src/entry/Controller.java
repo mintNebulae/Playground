@@ -1,3 +1,5 @@
+package entry;
+
 import features.montyhall.Simulators.Simulator;
 import features.wordfrequency.Frequency;
 import input.Input;
